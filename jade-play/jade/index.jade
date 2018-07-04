@@ -1,0 +1,40 @@
+extends ../layouts/layout.jade
+include ../includes/mixins.jade
+    
+block headContent
+    title Jade Playground
+block bodyContent
+
+        - var myTitle = 'Hey Everyone!'
+        -var mySkills = ['Express', 'Jade', 'Node.js', 'SASS']
+
+        if myTitle
+            h1 #{myTitle}
+            p.myP#myPID This is paragraph, as well
+        else 
+            h1 Awwwh We have no title!!
+
+        mixin paragraph
+            p Hello
+        
+        mixin paragraph2(myContent, id)
+            p(id=id)= myContent
+        
+          
+        ul
+            each val in mySkills
+                li= val
+        
+        +paragraph 
+        +paragraph2('Hey This is Anurag How are you', 'myParaId')
+        form(action="", method="post")
+                
+            +formText('firstName', 'First Name:')
+            +formText('lastName', 'Last Name:')
+            
+            .form-group
+                label(for="myList") Occupation:
+                select(name="myList", id="myList")
+                    option(value="Designer") Designer
+                    option(value="Code") Coder
+            input(type="submit", value="Submit")
